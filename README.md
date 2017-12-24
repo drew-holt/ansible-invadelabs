@@ -1,9 +1,22 @@
+ansible-invadelabs
+==================
+Example of spinning up Ansible with Virtual Box scripts to create 4 VMs, set hostnames, and test a few commands. Also included is a script to delete the created Virtual Box VMs.
+
 # Install Ansible on host machine
 ~~~
 sudo apt-get install -y ansible
 ~~~
 
-# Create base VM image from Ubuntu 16.04;
+# Create base VM image from Ubuntu 16.04
+* Create VirtualBox internal network vboxnet0
+
+* Create a new VBox with NIC1 on NAT and NIC2 on internal network vboxnet1
+
+* Login into new machine, configure admin user, password, and keys. Quick way to copy ssh key to VM:
+~~~
+ssh-copy-id -i ~/.ssh/id_rsa 192.168.56.100
+~~~
+
 Personal preference, set vi for default
 ~~~
 sudo update-alternatives --set editor /usr/bin/vim.basic
