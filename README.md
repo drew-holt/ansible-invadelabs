@@ -54,7 +54,12 @@ Create linked clones from VM ubuntu1604-base snapshot 2017.12.13
 ./create_linked_clones_vbox.sh
 ~~~
 
-*Fix SSH host key checking*
+Work around to accept new SSH keys for now
+~~~
+$ cat ~/.ansible.cfg
+[defaults]
+host_key_checking = False
+~~~
 
 Set proper hostnames for the VMs
 ~~~

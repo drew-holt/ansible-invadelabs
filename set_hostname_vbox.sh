@@ -23,7 +23,7 @@ function set_hostname () {
     do IP=$(VBoxManage guestproperty get $VMNAME "/VirtualBox/GuestInfo/Net/1/V4/IP" | cut -d" " -f2);
       for HOST in $IP;
         do
-          ssh $HOST -C "echo $IP $VMNAME | sudo -tt tee -a /etc/hosts >/dev/null; sudo hostnamectl set-hostname $VMNAME"
+          ssh -o StrictHostKeyChecking=no $HOST -C "echo $IP $VMNAME | sudo -tt tee -a /etc/hosts >/dev/null; sudo hostnamectl set-hostname $VMNAME"
           #ssh $HOST -C "sudo sed -i "s/ubuntu-vm-base/$VMNAME/" /etc/hosts; sudo hostnamectl set-hostname $VMNAME";
       done
     done
