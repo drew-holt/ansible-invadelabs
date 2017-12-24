@@ -70,6 +70,12 @@ function set_hostname () {
   done
 }
 
+START=$(date +%s)
+
 create_vms;
 hosts_online;
 set_hostname;
+
+END=$(date +%s)
+DIFF=$(echo "$END - $START" | bc)
+echo "It took $DIFF seconds to complete this task..."
