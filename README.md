@@ -61,20 +61,8 @@ Create linked clones from VM ubuntu1604-base snapshot 2017.12.13
 ./create_linked_clones_vbox.sh
 ~~~
 
-Work around to accept new SSH keys for now
-~~~
-$ cat ~/.ansible.cfg
-[defaults]
-host_key_checking = False
-~~~
-
-Set proper hostnames for the VMs
-~~~
-./set_hostname_vbox.sh
-~~~
-
 # Delete Linked Clone VMs ** DESTRUCTIVE **
-Delete the linked clone VMs permanently
+When ready to clean up; delete the linked clone VMs permanently
 ~~~
 ./delete_linked_clones_vbox.sh
 ~~~
@@ -125,3 +113,11 @@ Ubuntu 16.04 server doesn't come with python, which we need for Ansible.
 ~~~
 ansible-playbook -i hosts install_python.yaml
 ~~~
+
+Work around to accept new SSH keys. Fixed in script when SSH'ing with '-o StrictHostKeyChecking=no' to set hostname
+~~~
+$ cat ~/.ansible.cfg
+[defaults]
+host_key_checking = False
+~~~
+
