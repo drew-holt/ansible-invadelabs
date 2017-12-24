@@ -20,6 +20,8 @@ done
 
 sleep 20;
 
+echo '[vms]' > hosts
+
 for i in {01..04}; do
   VBoxManage guestproperty get ubuntu1604-vm$i "/VirtualBox/GuestInfo/Net/1/V4/IP" | cut -d" " -f2 >> hosts;
 done
