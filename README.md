@@ -7,12 +7,18 @@ Example of spinning up Ansible with Virtual Box scripts to create 4 VMs, set hos
 sudo apt-get install -y ansible
 ~~~
 
+# Create VirtualBox Host-only Adapter network vboxnet0
+
+![vboxnet0 Settings](media/vboxnet0.png)
+
+![vboxnet0 DHCP Settings](media/vboxnet0_dhcp.png)
+
 # Create base VM image from Ubuntu 16.04
-* Create VirtualBox internal network vboxnet0
+## Create a new VBox with NIC1 on NAT and NIC2 on internal network vboxnet0
+![Base Ubuntu VM](media/base_ubuntu_vm.png)
 
-* Create a new VBox with NIC1 on NAT and NIC2 on internal network vboxnet1
-
-* Login into new machine, configure admin user, password, and keys. Quick way to copy ssh key to VM:
+## Configure base VM
+Login into new VM, configure admin user, password, and keys. Quick way to copy ssh key to VM:
 ~~~
 ssh-copy-id -i ~/.ssh/id_rsa 192.168.56.100
 ~~~
@@ -43,10 +49,11 @@ $ sudo umount /mnt
 $ cd; rm VBoxGuestAdditions_5.2.4.iso
 ~~~
 
-Shutdown, snapshot
+## Shutdown the VM and take a snapshot
 ~~~
 $ VBoxManage snapshot ubuntu1604-base take 2017.12.13
 ~~~
+![Base Ubuntu VM Snapshot](media/base_ubuntu_vm_snapshot.png)
 
 # Create linked clone VMs
 Create linked clones from VM ubuntu1604-base snapshot 2017.12.13
@@ -66,16 +73,10 @@ Set proper hostnames for the VMs
 ./set_hostname_vbox.sh
 ~~~
 
-# Delete Linked Clone VMs
-Delete the linked clone VMs permenantly
+# Delete Linked Clone VMs ** DESTRUCTIVE **
+Delete the linked clone VMs permanently
 ~~~
 ./delete_linked_clones_vbox.sh
-~~~
-
-# Old - added to base image
-Ubuntu 16.04 server doesn't come with python, which we need for Ansible.
-~~~
-ansible-playbook -i hosts install_python.yaml
 ~~~
 
 # Example Ansible Commands
@@ -117,4 +118,10 @@ $ ansible -i hosts all -m setup
 Increase how many operations occur concurrently
 ~~~
 -f 10
+~~~
+
+# Old - added to base image
+Ubuntu 16.04 server doesn't come with python, which we need for Ansible.
+~~~
+ansible-playbook -i hosts install_python.yaml
 ~~~
