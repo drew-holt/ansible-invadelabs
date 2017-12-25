@@ -14,7 +14,7 @@ sudo apt-get install -y ansible
 ![vboxnet0 DHCP Settings](media/vboxnet0_dhcp.png)
 
 # Create base VM image from Ubuntu 16.04
-## Create a new VBox with NIC1 on NAT and NIC2 on internal network vboxnet0
+## Create a new VBox with NIC1 on NAT and NIC2 on host-only network vboxnet0
 ![Base Ubuntu VM](media/base_ubuntu_vm.png)
 
 ## Configure base VM
