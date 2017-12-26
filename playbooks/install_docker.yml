@@ -1,0 +1,5 @@
+- hosts: vms
+  roles:
+    - role: mongrelion.docker
+      docker_config:
+        userland-proxy: false
