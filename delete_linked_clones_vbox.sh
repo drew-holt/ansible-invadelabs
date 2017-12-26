@@ -7,20 +7,23 @@
 source config.sh
 
 echo -n "Delete VMs created from this script? [y|n]: "
-read yno
+read -r yno
 case $yno in
   [yY] | [yY][Ee][Ss] )
     echo "Here we go!"
 
     # Power off, Delete em'
-    for i in `seq -f "%02g" $START_VM $END_VM`; do
-      printf "Power off ubuntu1604-vm$i "; VBoxManage controlvm ubuntu1604-vm$i poweroff;
-      printf "Delete ubuntu1604-vm$i "; VBoxManage unregistervm ubuntu1604-vm$i --delete;
+    for i in $(seq -f "%02g" "$START_VM" "$END_VM"); do
+      printf "Power off ubuntu1604-vm$i "; VBoxManage controlvm ubuntu1604-vm"$i" poweroff;
+#            ^-- SC2059: Don't use variables in the printf format string. Use printf "..%s.." "$foo".
+      printf "Delete ubuntu1604-vm$i "; VBoxManage unregistervm ubuntu1604-vm"$i" --delete;
+#            ^-- SC2059: Don't use variables in the printf format string. Use printf "..%s.." "$foo".
+
       printf "\n"
     done
 
     # Save a copy of the hosts file
-    mv hosts hosts.deleted.$(date +%F.%T)
+    mv hosts hosts.deleted."$(date +%F.%T)"
   ;;
 
   [nN] | [n|N][O|o] )
