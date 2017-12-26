@@ -4,24 +4,12 @@
 # write out hosts file for ansible
 # set hostname of each new guest
 
-# create VMs with name like ubuntu1604-vm01, ubuntu1604-vm02, etc
-BASEVM=ubuntu1604-base
-SNAPSHOT=2017.12.13
-BASENAME=ubuntu1604-vm
+# pull in variables from config.sh
+source config.sh
 
-######################## Junk
-# VBoxManage clonevm <Name of VM> --name <New Name> --register
-# VBoxManage clonevm ubuntu1604-base --snapshot 2017.12.13 --options link --name ubuntu16.04-vm01 --register
-# for i in {01..04}; do VBoxManage clonevm ubuntu1604-base --snapshot 2017.12.13 --options link --name ubuntu1604-vm$i --register; done
-# VBoxManage startvm --type headless ubuntu1604-vm2
-# for i in {01..04}; do VBoxManage startvm --type headless ubuntu1604-vm$i; done
-# VBoxManage guestproperty enumerate ubuntu16.04-vm03
-# VBoxManage guestproperty get ubuntu16.04-vm03 "/VirtualBox/GuestInfo/Net/1/V4/IP"
-######################## Junk
-
-# create 4 linked clones from ubuntu1604-base snapshot 2017.12.13
+# create linked clones from snapshot of base image
 function create_vms {
-  for i in {01..04}; do
+  for i in `seq -f "%02g" $START_VM $END_VM`; do
     VBoxManage clonevm $BASEVM --snapshot $SNAPSHOT --options link --name $BASENAME$i --register;
     VBoxManage startvm --type headless $BASENAME$i;
     printf "\n"
@@ -34,7 +22,7 @@ function hosts_online () {
   echo '[vms]' > hosts
   echo "Waiting for each VM to become available"
   # for each VM run the while loop
-  for i in {01..04}; do
+  for i in `seq -f "%02g" $START_VM $END_VM`; do
       # loop until the IP and vbox guest utils are online
       while true;
         do

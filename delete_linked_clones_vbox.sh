@@ -3,11 +3,8 @@
 # Delete linked clones VirtualBox machines from ubuntu1604-base
 # rename hosts file
 
-######################## Junk
-# VBoxManage unregistervm --delete
-# for i in {01..04}; do VBoxManage controlvm ubuntu1604-vm$i poweroff; done
-# for i in {01..04}; do VBoxManage unregistervm ubuntu1604-vm$i --delete; done
-######################## Junk
+# pull in settings from config.sh
+source config.sh
 
 echo -n "Delete VMs created from this script? [y|n]: "
 read yno
@@ -16,7 +13,7 @@ case $yno in
     echo "Here we go!"
 
     # Power off, Delete em'
-    for i in {01..04}; do
+    for i in `seq -f "%02g" $START_VM $END_VM`; do
       printf "Power off ubuntu1604-vm$i "; VBoxManage controlvm ubuntu1604-vm$i poweroff;
       printf "Delete ubuntu1604-vm$i "; VBoxManage unregistervm ubuntu1604-vm$i --delete;
       printf "\n"
