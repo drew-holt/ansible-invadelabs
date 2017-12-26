@@ -61,11 +61,19 @@ Create linked clones from VM ubuntu1604-base snapshot 2017.12.13
 ./create_linked_clones_vbox.sh
 ~~~
 
+Example output
+
+![Example output of create_linked_clones_vbox.sh](media/create_linked_clones.png)
+
 # Delete Linked Clone VMs ** DESTRUCTIVE **
 When ready to clean up; delete the linked clone VMs permanently
 ~~~
 ./delete_linked_clones_vbox.sh
 ~~~
+
+Example output
+
+![Example output of delete_linked_clones_vbox.sh](media/delete_linked_clones.png)
 
 # Example Ansible Commands
 Ping all hosts
@@ -120,4 +128,3 @@ $ cat ~/.ansible.cfg
 [defaults]
 host_key_checking = False
 ~~~
-
