@@ -15,7 +15,7 @@ function create_vms {
   for i in $(seq -f "%02g" "$START_VM" "$END_VM"); do
     VBoxManage clonevm "$BASEVM" --snapshot "$SNAPSHOT" --options link --name "$BASENAME$i" --register;
     VBoxManage startvm --type headless "$BASENAME$i";
-    printf "\n"
+    printf "\\n"
   done
 }
 
@@ -42,7 +42,7 @@ function hosts_online () {
           fi
       done
   done
-  printf "\n"
+  printf "\\n"
 }
 
 # set hostname based on VM name
@@ -69,5 +69,5 @@ set_hostname;
 
 END=$(date +%s)
 DIFF=$(echo "$END - $START" | bc)
-printf "\n"
+printf "\\n"
 echo "It took $DIFF seconds to complete..."

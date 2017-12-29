@@ -17,7 +17,7 @@ case $yno in
       printf "Power off ubuntu1604-vm%s " "$i"; VBoxManage controlvm ubuntu1604-vm"$i" poweroff;
       printf "Delete ubuntu1604-vm%s " "$i"; VBoxManage unregistervm ubuntu1604-vm"$i" --delete;
 
-      printf "\n"
+      printf "\\n"
     done
 
     # Save a copy of the hosts file
