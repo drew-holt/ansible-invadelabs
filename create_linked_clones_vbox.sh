@@ -3,6 +3,9 @@
 # Create x number of linked clones VirtualBox machines from ubuntu1604-base
 # write out hosts file for ansible
 # set hostname of each new guest
+# 
+# shellcheck disable=SC2086
+# SC2086: Double quote to prevent globbing and word splitting.
 
 # pull in settings from config.sh
 source config.sh
@@ -29,7 +32,7 @@ function hosts_online () {
           # NoLoggedInusers was the only property available between IP and guest tools online
           STATE=$(VBoxManage guestproperty get "$BASENAME$i" "/VirtualBox/GuestInfo/OS/NoLoggedInUsers")
           sleep 1;
-          echo "Sleeping 1s for "$BASENAME$i" to become available.";
+          echo "Sleeping 1s for $BASENAME$i to become available.";
 
           # if "No Value set!" then the guest is up and ready to break out of the loop
           if [ "$STATE" != "No value set!" ]; then
@@ -52,7 +55,7 @@ function set_hostname () {
     IP=$(VBoxManage guestproperty get "$VMNAME" "/VirtualBox/GuestInfo/Net/1/V4/IP" | cut -d" " -f2);
     for HOST in $IP; do
       ssh -q -o StrictHostKeyChecking=no "$HOST" -C "echo "$IP $VMNAME" | sudo -tt tee -a /etc/hosts >/dev/null; sudo hostnamectl set-hostname $VMNAME"
-      #ssh $HOST -C "sudo sed -i "s/ubuntu-vm-base/$VMNAME/" /etc/hosts; sudo hostnamectl set-hostname $VMNAME";
+      # ssh $HOST -C "sudo sed -i "s/ubuntu-vm-base/$VMNAME/" /etc/hosts; sudo hostnamectl set-hostname $VMNAME";
       echo "$IP $VMNAME";
     done
   done

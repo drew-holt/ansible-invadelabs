@@ -14,10 +14,8 @@ case $yno in
 
     # Power off, Delete em'
     for i in $(seq -f "%02g" "$START_VM" "$END_VM"); do
-      printf "Power off ubuntu1604-vm$i "; VBoxManage controlvm ubuntu1604-vm"$i" poweroff;
-#            ^-- SC2059: Don't use variables in the printf format string. Use printf "..%s.." "$foo".
-      printf "Delete ubuntu1604-vm$i "; VBoxManage unregistervm ubuntu1604-vm"$i" --delete;
-#            ^-- SC2059: Don't use variables in the printf format string. Use printf "..%s.." "$foo".
+      printf "Power off ubuntu1604-vm%s " "$i"; VBoxManage controlvm ubuntu1604-vm"$i" poweroff;
+      printf "Delete ubuntu1604-vm%s " "$i"; VBoxManage unregistervm ubuntu1604-vm"$i" --delete;
 
       printf "\n"
     done
