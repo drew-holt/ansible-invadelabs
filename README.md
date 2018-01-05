@@ -75,6 +75,18 @@ Example output
 
 ![Example output of delete_linked_clones_vbox.sh](media/delete_linked_clones.png)
 
+## Start / Stop VMs
+To gracefully power down or power up after creation:
+```
+$ ./start_stop_clones_vbox.sh
+Start or stop VMs created from this script? [start|stop]:
+```
+
+##  Install Docker
+~~~
+ansible-playbook -i hosts -b install_docker.yml
+~~~
+
 # Example Ansible Commands
 Ping all hosts
 ~~~
@@ -119,7 +131,7 @@ Increase how many operations occur concurrently
 # Old - added to base image
 Ubuntu 16.04 server doesn't come with python, which we need for Ansible.
 ~~~
-ansible-playbook -i hosts install_python.yaml
+ansible-playbook -i hosts -b install_python.yml
 ~~~
 
 Work around to accept new SSH keys. Fixed in script when SSH'ing with '-o StrictHostKeyChecking=no' to set hostname
