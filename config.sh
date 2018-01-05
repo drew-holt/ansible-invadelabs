@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # name of the base install vm in VirtualBox
-BASEVM=ubuntu1604-base
+OS=ubuntu1604
+#OS=centos7
+BASEVM="$OS"-base
 echo "Base VM name: " "$BASEVM"
 
 # name of the snapshot of the base install vm
@@ -9,7 +11,7 @@ SNAPSHOT=2017.12.13
 echo "Snapshot: " "$SNAPSHOT"
 
 # prefix each linked clone to genereate etc ubuntu1604-vm01
-BASENAME=ubuntu1604-vm
+BASENAME="$OS"-vm
 echo "VM prefix: " "$BASENAME"
 
 # start of the number linked clones to create / delete

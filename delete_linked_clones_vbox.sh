@@ -14,8 +14,8 @@ case $yno in
 
     # Power off, Delete em'
     for i in $(seq -f "%02g" "$START_VM" "$END_VM"); do
-      printf "Power off ubuntu1604-vm%s " "$i"; VBoxManage controlvm ubuntu1604-vm"$i" poweroff;
-      printf "Delete ubuntu1604-vm%s " "$i"; VBoxManage unregistervm ubuntu1604-vm"$i" --delete;
+      printf "Power off %s " "$BASENAME$i"; VBoxManage controlvm "$BASENAME$i" poweroff;
+      printf "Delete %s " "$BASENAME$i"; VBoxManage unregistervm "$BASENAME$i" --delete;
 
       printf "\\n"
     done
