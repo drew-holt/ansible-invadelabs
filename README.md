@@ -1,4 +1,4 @@
-ansible-invadelabs [![Build Status](https://travis-ci.org/drew-holt/ansible-invadelabs.png?branch=master)](https://travis-ci.org/drew-holt/ansible-invadelabs})
+ansible-invadelabs [![Build Status](https://travis-ci.org/invadelabs/ansible-invadelabs.png?branch=master)](https://travis-ci.org/invadelabs/ansible-invadelabs})
 ==================
 Example of spinning up Ansible with Virtual Box scripts to create 4 VMs, set hostnames, and test a few commands. Also included is a script to delete the created Virtual Box VMs.
 
