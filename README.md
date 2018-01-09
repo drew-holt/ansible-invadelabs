@@ -1,6 +1,6 @@
 ansible-invadelabs [![Build Status](https://travis-ci.org/invadelabs/ansible-invadelabs.png?branch=master)](https://travis-ci.org/invadelabs/ansible-invadelabs})
 ==================
-Example of spinning up Ansible with Virtual Box scripts to create 4 VMs, set hostnames, and test a few commands. Also included is a script to delete the created Virtual Box VMs.
+Creates 4x Virtual Box Linked VMs and sets hostnames / installs docker via Ansible for a Kubernetes cluster. Also scripts to destroy, stop, or start VMs.
 
 # Install Ansible on host machine
 ~~~
@@ -8,13 +8,15 @@ sudo apt-get install -y ansible
 ~~~
 
 # Create VirtualBox Host-only Adapter network vboxnet0
+VBoxManage throws errors when trying to `VBoxMange hostonlyif ipconfig vboxnet0` so create manually:
 
 ![vboxnet0 Settings](media/vboxnet0.png)
 
 ![vboxnet0 DHCP Settings](media/vboxnet0_dhcp.png)
 
-# Create base VM image from Ubuntu 16.04
+# Create base VM image from Ubuntu 16.04 Server or CentOS 7
 ## Create a new VBox with NIC1 on NAT and NIC2 on host-only network vboxnet0
+Will turn this into a kickstart file eventually, for now minimum system install and follow the next steps.
 ![Base Ubuntu VM](media/base_ubuntu_vm.png)
 
 ## Configure base VM
