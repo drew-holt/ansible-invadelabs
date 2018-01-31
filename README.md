@@ -1,4 +1,4 @@
-ansible-invadelabs [![Build Status](https://travis-ci.org/invadelabs/ansible-invadelabs.png?branch=master)](https://travis-ci.org/invadelabs/ansible-invadelabs})
+ansible-invadelabs [![Build Status](https://travis-ci.org/invadelabs/ansible-invadelabs.png?branch=master)](https://travis-ci.org/invadelabs/ansible-invadelabs}) [![Code Coverage](https://codecov.io/gh/invadelabs/ansible-invadelabs/branch/master/graph/badge.svg)](https://codecov.io/gh/invadelabs/ansible-invadelabs/branch/master)
 ==================
 Creates 4x Virtual Box Linked VMs and sets hostnames / installs docker via Ansible for a Kubernetes cluster. Also scripts to destroy, stop, or start VMs.
 
