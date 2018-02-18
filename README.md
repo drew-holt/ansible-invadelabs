@@ -1,6 +1,8 @@
 ansible-invadelabs [![Build Status](https://travis-ci.org/invadelabs/ansible-invadelabs.png?branch=master)](https://travis-ci.org/invadelabs/ansible-invadelabs) [![Code Coverage](https://codecov.io/gh/invadelabs/ansible-invadelabs/branch/master/graph/badge.svg)](https://codecov.io/gh/invadelabs/ansible-invadelabs/branch/master)
 ==================
-Creates 4x Virtual Box Linked VMs and sets hostnames / installs docker via Ansible for a Kubernetes cluster. Also scripts to destroy, stop, or start VMs.
+Creates 4x Virtual Box Linked VMs and sets hostnames, installs docker via Ansible, to be used for a Kubernetes cluster. Also scripts to destroy, stop, or start VMs.
+
+*Note - This is deprecated in favor of Terraform and a VBox provider.
 
 # Install Ansible on host machine
 ~~~
