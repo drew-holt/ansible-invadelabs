@@ -1,11 +1,6 @@
-ansible-invadelabs [![Build Status](https://travis-ci.org/invadelabs/ansible-invadelabs.png?branch=master)](https://travis-ci.org/invadelabs/ansible-invadelabs) [![Code Coverage](https://codecov.io/gh/invadelabs/ansible-invadelabs/branch/master/graph/badge.svg)](https://codecov.io/gh/invadelabs/ansible-invadelabs/branch/master)
+vbox-invadelabs [![Build Status](https://travis-ci.org/invadelabs/vbox-invadelabs.png?branch=master)](https://travis-ci.org/invadelabs/vbox-invadelabs) [![Code Coverage](https://codecov.io/gh/invadelabs/vbox-invadelabs/branch/master/graph/badge.svg)](https://codecov.io/gh/invadelabs/vbox-invadelabs/branch/master)
 ==================
-Creates 4x Virtual Box Linked VMs and sets hostnames / installs docker via Ansible for a Kubernetes cluster. Also scripts to destroy, stop, or start VMs.
-
-# Install Ansible on host machine
-~~~
-sudo apt-get install -y ansible
-~~~
+Creates, destroy, stops, or starts a set amount of Virtual Box Linked VMs. Used with [invadelabs/ansible-invadelabs](https://github.com/invadelabs/ansible-invadelabs) for local testing followed by terraform on cloud provider.
 
 # Create VirtualBox Host-only Adapter network vboxnet0
 VBoxManage throws errors when trying to `VBoxMange hostonlyif ipconfig vboxnet0` so create manually:
@@ -83,62 +78,3 @@ To gracefully power down or power up after creation:
 $ ./start_stop_clones_vbox.sh
 Start or stop VMs created from this script? [start|stop]:
 ```
-
-##  Install Docker
-~~~
-ansible-playbook -i hosts -b install_docker.yml
-~~~
-
-# Example Ansible Commands
-Ping all hosts
-~~~
-$ ansible -i hosts all -m ping
-~~~
-
-Get the hostname from all VMs in the "vms" group from the hosts file
-~~~
-$ ansible -i hosts vms -a '/bin/hostname'
-~~~
-
-Get python version from all VMs
-~~~
-$ ansible -i hosts all -a '/usr/bin/python --version'
-~~~
-
-Use the shell module to run the shutdown command on all VMs as root (-b)
-~~~
-$ ansible -i hosts vms -b -a 'shutdown -h now'
-~~~
-
-Run the command echo $TERM on all VMs
-~~~
-$ ansible -i hosts all -m shell -a 'echo $TERM'
-~~~
-
-Copy the file motd in the local directoy to all VMs
-~~~
-$ ansible -i hosts vms -m copy -b -a "src=motd dest=/etc/motd"
-~~~
-
-Get facts from all hosts
-~~~
-$ ansible -i hosts all -m setup
-~~~
-
-Increase how many operations occur concurrently
-~~~
--f 10
-~~~
-
-# Old - added to base image
-Ubuntu 16.04 server doesn't come with python, which we need for Ansible.
-~~~
-ansible-playbook -i hosts -b install_python.yml
-~~~
-
-Work around to accept new SSH keys. Fixed in script when SSH'ing with '-o StrictHostKeyChecking=no' to set hostname
-~~~
-$ cat ~/.ansible.cfg
-[defaults]
-host_key_checking = False
-~~~
