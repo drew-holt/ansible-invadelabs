@@ -1,8 +1,6 @@
 ansible-invadelabs [![Build Status](https://travis-ci.org/invadelabs/ansible-invadelabs.png?branch=master)](https://travis-ci.org/invadelabs/ansible-invadelabs) [![Code Coverage](https://codecov.io/gh/invadelabs/ansible-invadelabs/branch/master/graph/badge.svg)](https://codecov.io/gh/invadelabs/ansible-invadelabs/branch/master)
 ==================
-Creates 4x Virtual Box Linked VMs and sets hostnames, installs docker via Ansible, to be used for a Kubernetes cluster. Also scripts to destroy, stop, or start VMs.
-
-*Note - This is deprecated in favor of Terraform and a VBox provider.
+Creates x Virtual Box Linked VMs and sets hostnames. Then use Ansible for rest of run. Also scripts to destroy, stop, or start VMs for local testing.
 
 # Install Ansible on host machine
 ~~~
@@ -86,9 +84,10 @@ $ ./start_stop_clones_vbox.sh
 Start or stop VMs created from this script? [start|stop]:
 ```
 
-##  Install Docker
+# Install Ansible Galaxy roles and run our playbook:
 ~~~
-ansible-playbook -i hosts -b install_docker.yml
+ansible-galaxy install -r requirements.yml -p roles/
+ansible-playbook -i hosts site.yml
 ~~~
 
 # Example Ansible Commands
