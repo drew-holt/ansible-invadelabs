@@ -19,5 +19,5 @@ START_VM=01
 echo "Starting number of VMs: " "$START_VM"
 
 # end of the number linked clones to create / delete, i.e. vm01-vm04
-END_VM=04
+END_VM=01
 echo "Ending number of VMs: " "$END_VM"

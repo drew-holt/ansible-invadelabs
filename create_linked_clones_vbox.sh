@@ -11,7 +11,7 @@
 source config.sh
 
 # create linked clones from snapshot of base image
-function create_vms {
+create_vms () {
   for i in $(seq -f "%02g" "$START_VM" "$END_VM"); do
     VBoxManage clonevm "$BASEVM" --snapshot "$SNAPSHOT" --options link --name "$BASENAME$i" --register;
     VBoxManage startvm --type headless "$BASENAME$i";
@@ -20,7 +20,7 @@ function create_vms {
 }
 
 # create the Ansible hosts file with the IP of each host as they come online
-function hosts_online () {
+hosts_online () {
   # add this group to the top of the Ansible hosts file
   echo '[vms]' > hosts
   echo "Waiting for each VM to become available"
@@ -46,7 +46,7 @@ function hosts_online () {
 }
 
 # set hostname based on VM name
-function set_hostname () {
+set_hostname () {
   # create a list of VM names, cut to only vmname, and remove double quotes
   VMLIST=$(VBoxManage list vms | grep "$BASENAME" | cut -d" " -f1|  tr -d \");
   echo "Setting hostname based on VM name"
