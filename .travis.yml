@@ -1,17 +1,15 @@
 language: bash
 sudo: required
-dist: xenial
+dist: trusty
 before_install:
+- sudo apt-add-repository "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse"
 - sudo apt-get -qq update
-- sudo apt-get install -y shellcheck kcov
+- sudo apt-get install -t trusty-backports shellcheck kcov
 script:
 - shellcheck -x *.sh
-after_success: |
-  kcov coverage-config.sh config.sh
-  kcov coverage-create_linked_clones_vbox.sh create_linked_clones_vbox.sh
-  echo y | kcov coverage-delete_linked_clones_vbox.sh delete_linked_clones_vbox.sh
-  echo stop | kcov coverage-start_stop_clones_vbox.sh start_stop_clones_vbox.sh
-  bash <(curl -s https://codecov.io/bash)
+# after_success: |
+#   for i in `ls *.sh`; do kcov coverage-$i $i; done;
+#   bash <(curl -s https://codecov.io/bash)
 notifications:
   slack:
     secure: N0q86yoiIxSe5KHy5B2joO1CyAZL9KuTXPkf9pB4OT3QvttBDCaRZ1KKPinRWhhEzJoYrvHlpHUcgGJ2OBXxqTEb2/pncI6ayvntE5xpMf3tjmiT9G001RPrq4IXGnoBvFurAPLnsXxx9Xa9QhSdJa6RmRitKvhUPosf7b127bsdW2paLUv5eZa/vOSZhsLiSR6lhO2GyJBYmdZ/f/cxYEwdPJ182wB9ZdavtISY3dQbuPt117DazY+i9m0W2yMjK38mwjtSWvfJVW/oYsNvpVCdUzgCMecDunFMy7QvjMKT07hXVyuGREsFr7YjzCFULFb/yENRnNbMAh3zvuUCMZ1cPEDpv5tUpQWPDEeUNw0YaDZiSPyXTdteyZTPes5LN8MQTEfKsRfQsrllqB5Qxv5o6UffBa3jjkkjScSeg1zaq7x9W4zFMmSwVP02oByXfznun3c97qBPaLXsYDYYsHuFmFWLxFUH3MgCA2qEkFztY/CzBIMUom6U3BrlGClhlffR2qKMmT3s5Ua34d14+CvHPbhZKeZBns5Hd8XwZ1KP24qScSge1PX7i/LZP20zvSgH3UD8rMHbbXnUXHgpoQwMtl2AcnvB0TMp0rKegHciGXNnS2EBZz3Dwy5x/boNCSJL7GZ45naOK9qjHHMV5qUVXAC5J75PXaN/QwZSQHw=
