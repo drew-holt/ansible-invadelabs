@@ -1,5 +1,5 @@
 #!/bin/bash
-# Drew Holt <drewderivative@gmail.com>
+# Drew Holt <drew@invadelabs.com>
 # Create x number of linked clones VirtualBox machines from ubuntu1604-base
 # write out hosts file for ansible
 # set hostname of each new guest

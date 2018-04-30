@@ -1,5 +1,5 @@
 #!/bin/bash
-# Drew Holt <drewderivative@gmail.com>
+# Drew Holt <drew@invadelabs.com>
 # Delete linked clones VirtualBox machines from ubuntu1604-base
 # rename hosts file
 
