@@ -1,4 +1,4 @@
-vbox-invadelabs [![Build Status](https://travis-ci.org/invadelabs/vbox-invadelabs.png?branch=master)](https://travis-ci.org/invadelabs/vbox-invadelabs) [![Code Coverage](https://codecov.io/gh/invadelabs/vbox-invadelabs/branch/master/graph/badge.svg)](https://codecov.io/gh/invadelabs/vbox-invadelabs/branch/master)
+vbox-invadelabs [![Build Status](https://travis-ci.org/invadelabs/vbox-invadelabs.png?branch=master)](https://travis-ci.org/invadelabs/vbox-invadelabs)
 ==================
 Creates, destroy, stops, or starts a set amount of Virtual Box Linked VMs. Used with [invadelabs/ansible-invadelabs](https://github.com/invadelabs/ansible-invadelabs) for local testing followed by terraform on cloud provider.
 
